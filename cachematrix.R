@@ -1,13 +1,15 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Make inverse matrix   
+## 
 
-## Write a short comment describing this function
+## 
+#make a "matrix" as list of functions from given matrix
 
 makeCacheMatrix <- function(x = as.matrix()) {
     s <- NULL
-    set <- function() {
-        x <<- solve(x)
+    set <- function(y) {
+        x <<- y
         s <<- NULL
+        #x
     }
     get <- function() x
     setsolve <- function(solve) s <<- solve
@@ -16,13 +18,14 @@ makeCacheMatrix <- function(x = as.matrix()) {
          setsolve = setsolve,
          getsolve = getsolve)
 }
+#calculate inverse matrix with checking of existing value in cache
 cacheSolve <- function(x, ...) {
     s <- x$getsolve()
     if(!is.null(s)) {
         message("getting cached data")
         return(s)
     }
-    #tmp<-x$set ()
+    #tmp<-x$set(x)
     data <- x$get()
     s <- solve(data, ...)
     x$setsolve(s)
